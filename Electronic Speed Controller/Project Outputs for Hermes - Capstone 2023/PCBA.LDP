@@ -1,0 +1,3 @@
+Layer Pairs Export File for PCB: C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc
+LayersSetName=Top_Bot_Thru_Holes|DrillFile=pcba-roundholes.txt|DrillLayers=gtl,g1,g2,gbl
+LayersSetName=Top_Bot_Slot_Holes|DrillFile=pcba-slotholes.txt|DrillLayers=gtl,g1,g2,gbl

@@ -1,0 +1,13 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [Hermes - Capstone 2023.PrjPcb]
+   Generated File[PCBA-RoundHoles.TXT]
+   Generated File[PCBA-SlotHoles.TXT]
+   Generated File[PCBA.LDP]
+   Generated File[PCBA.DRR]
+
+
+Files Generated   : 4
+Documents Printed : 0
+
+Finished Output Generation At 12:19:22 PM On 2023-07-10

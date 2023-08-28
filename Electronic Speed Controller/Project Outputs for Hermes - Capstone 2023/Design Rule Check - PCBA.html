@@ -1,0 +1,560 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\amann\Documents\Altium Shared Documents\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">2023-07-10</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">12:21:25 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:02</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc" class="file"><acronym title="C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc">C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">72</td></tr>
+</table>
+</td>
+</table><a name="IDVAKEK0TAM0VSIQ4APXZGSVVW5EFKNEUNZTWIZFHCG1RAALXFHPD"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID31PSYEZCVJAZOIK140HUJDD3QH33UBQAE2XXGUIB0IVYWORVCNEB">Clearance Constraint (Gap=4mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDEVYQFKY0DEZII3KGU2IUFEVMPHFLR2ZAGFQPWFHH3323BXEAQ5C">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID3FG0SREV3JDTIMQEQBLDC2GSCOKBNOGSNDBNBNJ3322MEPXS1TIJ">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDB5W1JQGLVFXYDJB2KCY0NRW5WJE52A4MRD3H2XE1HRAK4XKMGASN">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID240GDSFBHCRNFSGUUE1HWVGTIOJ35UX5B05WJEKZZ5SUVHS3NYVL">Width Constraint (Min=4mil) (Max=71497.938mil) (Preferred=4mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID540LB3NJ1YSMLOJ24OQ01AP2QJV3LC5LD4ZDIAOYRWUKRCOIWEHL">Power Plane Connect Rule(Direct Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (InPadClass('PowerPads'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDI2AWLVK25CVFGO2GVLQJ3YKH1ME4ZUTUCGHUPRKEDHYDQ4KZTLXD">Power Plane Connect Rule(Relief Connect )(Expansion=11.811mil) (Conductor Width=4mil) (Air Gap=4mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDLSI1INAVG41AJD2CA2VQETKMPOMEHFRQAYAW5HINVHAHZXOFEED">Minimum Annular Ring (Minimum=3mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDIRF0YTFT5WUPIFSCTI25DZYB1L02ML2STPU3L0MCJNMC5B51GRVO">Hole Size Constraint (Min=7.874mil) (Max=248.031mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDM3IT5MH1UHATKLCUUV5OXO3KBKU5H1YZVO4QOHNA0MYYSIKT0MMN">Hole To Hole Clearance (Gap=9.842mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDLQ4Y00BRFX1MGCFH2RZ44UCJEPEOFCR33BP5M5HS3SUFWFV3V2DM">Minimum Solder Mask Sliver (Gap=0mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDYLEE5W3DSTIRN0SBHD315PNZXC3C13GII42H2HM45B4YV0ZGHLQN">Silk To Solder Mask (Clearance=4mil) (IsPad),(All)</a></td>
+<td class="column2">65</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDOOVAXCHYUKTNH4J203DO14GY2NJUUY4XEZCUD3B5YAAWIMLIXKYE">Silk to Silk (Clearance=0mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID0M04FJ3TFZG3LHAL5R0YCBZDEJVYZMXEUMZCEZGA4VT50BYJ1KWN">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDUGGW1ASEBM3DJEYK01BNDP5ECE4YH3MVMU0ZYEAPVSEKOSZTUIM">Board Clearance Constraint (Gap=0mil) (All)</a></td>
+<td class="column2">7</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID0N1UNCL5RHJVB15ILZLF0FVLVJUXFWNPLSRU2OPMD2C3X3YI1DVN">Height Constraint (Min=0mil) (Max=71497.938mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">72</td>
+</tr>
+</table><br><a name="IDYLEE5W3DSTIRN0SBHD315PNZXC3C13GII42H2HM45B4YV0ZGHLQN"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=4mil) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2921.015mil|Location2.X=2924.682mil|Location1.Y=1549.227mil|Location2.Y=1552.894mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2921.015mil|Location2.X=2924.682mil|Location1.Y=1549.227mil|Location2.Y=1552.894mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 4mil) Between Arc (1597.927mil,806.061mil) on Bottom Overlay And Pad C17-2(1592.022mil,806.334mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2922.745mil|Location2.X=2926.412mil|Location1.Y=2198.766mil|Location2.Y=2202.432mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2922.745mil|Location2.X=2926.412mil|Location1.Y=2198.766mil|Location2.Y=2202.432mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 4mil) Between Arc (1599.657mil,1455.599mil) on Bottom Overlay And Pad C17-2(1588.504mil,1455mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3812.364mil|Location2.X=3817.614mil|Location1.Y=2538.47mil|Location2.Y=2543.72mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3812.364mil|Location2.X=3817.614mil|Location1.Y=2538.47mil|Location2.Y=2543.72mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.82mil &lt; 4mil) Between Pad C1-1(2491.496mil,1775mil) on Top Layer And Text "C20" (2420.013mil,1800.005mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [2.82mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3742.386mil|Location2.X=3747.636mil|Location1.Y=2538.47mil|Location2.Y=2543.72mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3742.386mil|Location2.X=3747.636mil|Location1.Y=2538.47mil|Location2.Y=2543.72mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.82mil &lt; 4mil) Between Pad C1-2(2428.504mil,1775mil) on Top Layer And Text "C20" (2420.013mil,1800.005mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [2.82mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2788.18mil|Location2.X=2791.846mil|Location1.Y=2994.234mil|Location2.Y=2997.901mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2788.18mil|Location2.X=2791.846mil|Location1.Y=2994.234mil|Location2.Y=2997.901mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 4mil) Between Pad C16-2(1460.315mil,2227.087mil) on Top Layer And Text "R38" (1470.013mil,2251.068mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2798.18mil|Location2.X=2801.846mil|Location1.Y=2368.172mil|Location2.Y=2371.838mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2798.18mil|Location2.X=2801.846mil|Location1.Y=2368.172mil|Location2.Y=2371.838mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 4mil) Between Pad C16-2(1465.315mil,1597.087mil) on Top Layer And Text "R38" (1480.013mil,1625.005mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1253.167mil|Location2.X=1256.833mil|Location1.Y=2172.718mil|Location2.Y=2176.384mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1253.167mil|Location2.X=1256.833mil|Location1.Y=2172.718mil|Location2.Y=2176.384mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 4mil) Between Pad CN2-3(-65mil,1465mil) on Multi-Layer And Text "-" (-35.01mil,1400mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4237.375mil|Location2.X=4242.625mil|Location1.Y=3658.605mil|Location2.Y=3663.855mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4237.375mil|Location2.X=4242.625mil|Location1.Y=3658.605mil|Location2.Y=3663.855mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.539mil &lt; 4mil) Between Pad D2-1(2940mil,2891.339mil) on Top Layer And Text "W" (2920mil,2925mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [2.539mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4259.343mil|Location2.X=4264.593mil|Location1.Y=3608.162mil|Location2.Y=3613.412mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4259.343mil|Location2.X=4264.593mil|Location1.Y=3608.162mil|Location2.Y=3613.412mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.858mil &lt; 4mil) Between Pad D2-1(2940mil,2891.339mil) on Top Layer And Track (2925.236mil,2842.126mil)(2941.968mil,2858.858mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4259.343mil|Location2.X=4264.593mil|Location1.Y=3608.162mil|Location2.Y=3613.412mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4259.343mil|Location2.X=4264.593mil|Location1.Y=3608.162mil|Location2.Y=3613.412mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.858mil &lt; 4mil) Between Pad D2-1(2940mil,2891.339mil) on Top Layer And Track (2941.968mil,2858.858mil)(2941.968mil,2858.858mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4259.343mil|Location2.X=4264.593mil|Location1.Y=3608.162mil|Location2.Y=3613.412mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4259.343mil|Location2.X=4264.593mil|Location1.Y=3608.162mil|Location2.Y=3613.412mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.858mil &lt; 4mil) Between Pad D2-1(2940mil,2891.339mil) on Top Layer And Track (2941.968mil,2858.858mil)(2958.701mil,2842.126mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4127.368mil|Location2.X=4132.618mil|Location1.Y=3658.605mil|Location2.Y=3663.855mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4127.368mil|Location2.X=4132.618mil|Location1.Y=3658.605mil|Location2.Y=3663.855mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.539mil &lt; 4mil) Between Pad D3-1(2810mil,2891.339mil) on Top Layer And Text "V" (2790mil,2925mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [2.539mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4129.343mil|Location2.X=4134.593mil|Location1.Y=3608.163mil|Location2.Y=3613.413mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4129.343mil|Location2.X=4134.593mil|Location1.Y=3608.163mil|Location2.Y=3613.413mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.858mil &lt; 4mil) Between Pad D3-1(2810mil,2891.339mil) on Top Layer And Track (2795.236mil,2842.126mil)(2811.968mil,2858.858mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4129.343mil|Location2.X=4134.593mil|Location1.Y=3608.163mil|Location2.Y=3613.413mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4129.343mil|Location2.X=4134.593mil|Location1.Y=3608.163mil|Location2.Y=3613.413mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.858mil &lt; 4mil) Between Pad D3-1(2810mil,2891.339mil) on Top Layer And Track (2811.968mil,2858.858mil)(2811.968mil,2858.858mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4129.343mil|Location2.X=4134.593mil|Location1.Y=3608.162mil|Location2.Y=3613.412mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4129.343mil|Location2.X=4134.593mil|Location1.Y=3608.162mil|Location2.Y=3613.412mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.858mil &lt; 4mil) Between Pad D3-1(2810mil,2891.339mil) on Top Layer And Track (2811.968mil,2858.858mil)(2828.701mil,2842.126mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3967.372mil|Location2.X=3972.622mil|Location1.Y=3658.605mil|Location2.Y=3663.855mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3967.372mil|Location2.X=3972.622mil|Location1.Y=3658.605mil|Location2.Y=3663.855mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.539mil &lt; 4mil) Between Pad D4-1(2660mil,2891.339mil) on Top Layer And Text "U" (2640mil,2925mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [2.539mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3979.343mil|Location2.X=3984.593mil|Location1.Y=3608.162mil|Location2.Y=3613.412mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3979.343mil|Location2.X=3984.593mil|Location1.Y=3608.162mil|Location2.Y=3613.412mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.858mil &lt; 4mil) Between Pad D4-1(2660mil,2891.339mil) on Top Layer And Track (2645.236mil,2842.126mil)(2661.968mil,2858.858mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3979.343mil|Location2.X=3984.593mil|Location1.Y=3608.162mil|Location2.Y=3613.412mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3979.343mil|Location2.X=3984.593mil|Location1.Y=3608.162mil|Location2.Y=3613.412mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.858mil &lt; 4mil) Between Pad D4-1(2660mil,2891.339mil) on Top Layer And Track (2661.968mil,2858.858mil)(2661.968mil,2858.858mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3979.343mil|Location2.X=3984.593mil|Location1.Y=3608.162mil|Location2.Y=3613.412mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3979.343mil|Location2.X=3984.593mil|Location1.Y=3608.162mil|Location2.Y=3613.412mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.858mil &lt; 4mil) Between Pad D4-1(2660mil,2891.339mil) on Top Layer And Track (2661.968mil,2858.858mil)(2678.701mil,2842.126mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4367.375mil|Location2.X=4372.625mil|Location1.Y=3658.605mil|Location2.Y=3663.855mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4367.375mil|Location2.X=4372.625mil|Location1.Y=3658.605mil|Location2.Y=3663.855mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.539mil &lt; 4mil) Between Pad D5-1(3070mil,2891.339mil) on Top Layer And Text "Z" (3050mil,2925mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [2.539mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4389.343mil|Location2.X=4394.593mil|Location1.Y=3608.162mil|Location2.Y=3613.412mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4389.343mil|Location2.X=4394.593mil|Location1.Y=3608.162mil|Location2.Y=3613.412mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.858mil &lt; 4mil) Between Pad D5-1(3070mil,2891.339mil) on Top Layer And Track (3055.236mil,2842.126mil)(3071.968mil,2858.858mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4389.343mil|Location2.X=4394.593mil|Location1.Y=3608.162mil|Location2.Y=3613.412mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4389.343mil|Location2.X=4394.593mil|Location1.Y=3608.162mil|Location2.Y=3613.412mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.858mil &lt; 4mil) Between Pad D5-1(3070mil,2891.339mil) on Top Layer And Track (3071.968mil,2858.858mil)(3071.968mil,2858.858mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4389.343mil|Location2.X=4394.593mil|Location1.Y=3608.162mil|Location2.Y=3613.412mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4389.343mil|Location2.X=4394.593mil|Location1.Y=3608.162mil|Location2.Y=3613.412mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.858mil &lt; 4mil) Between Pad D5-1(3070mil,2891.339mil) on Top Layer And Track (3071.968mil,2858.858mil)(3088.701mil,2842.126mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1204.343mil|Location2.X=1209.593mil|Location1.Y=1843.162mil|Location2.Y=1848.412mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1204.343mil|Location2.X=1209.593mil|Location1.Y=1843.162mil|Location2.Y=1848.412mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.858mil &lt; 4mil) Between Pad D9-1(-115mil,1126.339mil) on Top Layer And Track (-113.032mil,1093.858mil)(-113.032mil,1093.858mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1204.343mil|Location2.X=1209.593mil|Location1.Y=1843.162mil|Location2.Y=1848.412mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1204.343mil|Location2.X=1209.593mil|Location1.Y=1843.162mil|Location2.Y=1848.412mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.858mil &lt; 4mil) Between Pad D9-1(-115mil,1126.339mil) on Top Layer And Track (-113.032mil,1093.858mil)(-96.299mil,1077.126mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1204.343mil|Location2.X=1209.593mil|Location1.Y=1843.162mil|Location2.Y=1848.412mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1204.343mil|Location2.X=1209.593mil|Location1.Y=1843.162mil|Location2.Y=1848.412mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.858mil &lt; 4mil) Between Pad D9-1(-115mil,1126.339mil) on Top Layer And Track (-129.764mil,1077.126mil)(-113.032mil,1093.858mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1618.022mil|Location2.X=1623.272mil|Location1.Y=2661.47mil|Location2.Y=2666.72mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1618.022mil|Location2.X=1623.272mil|Location1.Y=2661.47mil|Location2.Y=2666.72mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.717mil &lt; 4mil) Between Pad Q2-3(285mil,1925mil) on Top Layer And Text "Q2" (305.005mil,1959.992mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.717mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1486.233mil|Location2.X=1491.483mil|Location1.Y=2515.84mil|Location2.Y=2521.09mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1486.233mil|Location2.X=1491.483mil|Location1.Y=2515.84mil|Location2.Y=2521.09mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.913mil &lt; 4mil) Between Pad R22-1(190mil,1791.181mil) on Top Layer And Track (165.433mil,1710.079mil)(165.433mil,1871.496mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [2.913mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1486.233mil|Location2.X=1491.483mil|Location1.Y=2464.659mil|Location2.Y=2469.909mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1486.233mil|Location2.X=1491.483mil|Location1.Y=2464.659mil|Location2.Y=2469.909mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.913mil &lt; 4mil) Between Pad R22-2(190mil,1740mil) on Top Layer And Track (165.433mil,1710.079mil)(165.433mil,1871.496mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [2.913mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1486.196mil|Location2.X=1491.446mil|Location1.Y=2614.827mil|Location2.Y=2620.077mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1486.196mil|Location2.X=1491.446mil|Location1.Y=2614.827mil|Location2.Y=2620.077mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.104mil &lt; 4mil) Between Pad R24-1(190mil,1890.591mil) on Top Layer And Track (130mil,1871.496mil)(165.433mil,1871.496mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.104mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1486.196mil|Location2.X=1491.446mil|Location1.Y=2614.827mil|Location2.Y=2620.077mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1486.196mil|Location2.X=1491.446mil|Location1.Y=2614.827mil|Location2.Y=2620.077mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.104mil &lt; 4mil) Between Pad R24-1(190mil,1890.591mil) on Top Layer And Track (165.433mil,1710.079mil)(165.433mil,1871.496mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.104mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1486.233mil|Location2.X=1491.483mil|Location1.Y=2564.068mil|Location2.Y=2569.318mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1486.233mil|Location2.X=1491.483mil|Location1.Y=2564.068mil|Location2.Y=2569.318mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.913mil &lt; 4mil) Between Pad R24-2(190mil,1839.409mil) on Top Layer And Track (165.433mil,1710.079mil)(165.433mil,1871.496mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [2.913mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1238.6mil|Location2.X=1242.266mil|Location1.Y=1761.041mil|Location2.Y=1764.707mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1238.6mil|Location2.X=1242.266mil|Location1.Y=1761.041mil|Location2.Y=1764.707mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 4mil) Between Pad R30-1(-59.685mil,1035.591mil) on Top Layer And Track (-79.567mil,1004.291mil)(-79.567mil,1165.709mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1237.996mil|Location2.X=1243.246mil|Location1.Y=1744.603mil|Location2.Y=1749.853mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1237.996mil|Location2.X=1243.246mil|Location1.Y=1744.603mil|Location2.Y=1749.853mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.206mil &lt; 4mil) Between Pad R30-2(-59.685mil,984.409mil) on Top Layer And Track (-126.811mil,1004.291mil)(-79.567mil,1004.291mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.206mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1237.996mil|Location2.X=1243.246mil|Location1.Y=1744.603mil|Location2.Y=1749.853mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1237.996mil|Location2.X=1243.246mil|Location1.Y=1744.603mil|Location2.Y=1749.853mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.206mil &lt; 4mil) Between Pad R30-2(-59.685mil,984.409mil) on Top Layer And Track (-79.567mil,1004.291mil)(-79.567mil,1165.709mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.206mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1628.47mil|Location2.X=1633.72mil|Location1.Y=2516.532mil|Location2.Y=2521.782mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1628.47mil|Location2.X=1633.72mil|Location1.Y=2516.532mil|Location2.Y=2521.782mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.821mil &lt; 4mil) Between Pad R3-1(290mil,1790.59mil) on Top Layer And Text "R3" (317.506mil,1774.157mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [2.821mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1628.47mil|Location2.X=1633.72mil|Location1.Y=2493.206mil|Location2.Y=2498.456mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1628.47mil|Location2.X=1633.72mil|Location1.Y=2493.206mil|Location2.Y=2498.456mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.821mil &lt; 4mil) Between Pad R3-2(290mil,1739.41mil) on Top Layer And Text "R3" (317.506mil,1774.157mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [2.821mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2899.068mil|Location2.X=2904.318mil|Location1.Y=2795.844mil|Location2.Y=2801.094mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2899.068mil|Location2.X=2904.318mil|Location1.Y=2795.844mil|Location2.Y=2801.094mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.692mil &lt; 4mil) Between Pad R34-1(1599.409mil,2075mil) on Top Layer And Text "R34" (1579.765mil,2019.133mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.692mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2972.116mil|Location2.X=2977.366mil|Location1.Y=2795.844mil|Location2.Y=2801.094mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2972.116mil|Location2.X=2977.366mil|Location1.Y=2795.844mil|Location2.Y=2801.094mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.692mil &lt; 4mil) Between Pad R34-2(1650.591mil,2075mil) on Top Layer And Text "R34" (1579.765mil,2019.133mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.692mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2982.281mil|Location2.X=2985.948mil|Location1.Y=2798.482mil|Location2.Y=2802.148mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2982.281mil|Location2.X=2985.948mil|Location1.Y=2798.482mil|Location2.Y=2802.148mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 4mil) Between Pad R34-2(1650.591mil,2075mil) on Top Layer And Track (1664.114mil,1964.429mil)(1664.114mil,2066.791mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2982.281mil|Location2.X=2985.948mil|Location1.Y=2809.958mil|Location2.Y=2813.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2982.281mil|Location2.X=2985.948mil|Location1.Y=2809.958mil|Location2.Y=2813.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 4mil) Between Pad R34-2(1650.591mil,2075mil) on Top Layer And Track (1664.114mil,2066.791mil)(1670.02mil,2066.791mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2984.005mil|Location2.X=2987.671mil|Location1.Y=2168.482mil|Location2.Y=2172.148mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2984.005mil|Location2.X=2987.671mil|Location1.Y=2168.482mil|Location2.Y=2172.148mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 4mil) Between Pad R34-2(1655.591mil,1445mil) on Top Layer And Track (1665.838mil,1335.635mil)(1665.838mil,1437.997mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2984.005mil|Location2.X=2987.671mil|Location1.Y=2181.164mil|Location2.Y=2184.83mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2984.005mil|Location2.X=2987.671mil|Location1.Y=2181.164mil|Location2.Y=2184.83mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 4mil) Between Pad R34-2(1655.591mil,1445mil) on Top Layer And Track (1665.838mil,1437.997mil)(1671.744mil,1437.997mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3121.658mil|Location2.X=3126.908mil|Location1.Y=2919.94mil|Location2.Y=2925.19mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3121.658mil|Location2.X=3126.908mil|Location1.Y=2919.94mil|Location2.Y=2925.19mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.559mil &lt; 4mil) Between Pad R35-1(1825.247mil,2195.282mil) on Top Layer And Track (1799.066mil,2132.959mil)(1799.066mil,2235.321mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [2.559mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3137.38mil|Location2.X=3142.63mil|Location1.Y=2287.26mil|Location2.Y=2292.51mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3137.38mil|Location2.X=3142.63mil|Location1.Y=2287.26mil|Location2.Y=2292.51mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.615mil &lt; 4mil) Between Pad R35-1(1835mil,1564.409mil) on Top Layer And Text "R35" (1820.005mil,1540.578mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.615mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3121.658mil|Location2.X=3126.908mil|Location1.Y=2977.696mil|Location2.Y=2982.946mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3121.658mil|Location2.X=3126.908mil|Location1.Y=2977.696mil|Location2.Y=2982.946mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.559mil &lt; 4mil) Between Pad R35-2(1825.247mil,2246.463mil) on Top Layer And Track (1793.161mil,2235.321mil)(1799.066mil,2235.321mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [2.559mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3121.658mil|Location2.X=3126.908mil|Location1.Y=2971.121mil|Location2.Y=2976.371mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3121.658mil|Location2.X=3126.908mil|Location1.Y=2971.121mil|Location2.Y=2976.371mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.559mil &lt; 4mil) Between Pad R35-2(1825.247mil,2246.463mil) on Top Layer And Track (1799.066mil,2132.959mil)(1799.066mil,2235.321mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [2.559mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2887.388mil|Location2.X=2892.638mil|Location1.Y=1716.28mil|Location2.Y=1721.53mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2887.388mil|Location2.X=2892.638mil|Location1.Y=1716.28mil|Location2.Y=1721.53mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.82mil &lt; 4mil) Between Pad R38-1(1584.409mil,995mil) on Top Layer And Text "R38" (1570.013mil,940.005mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [2.82mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2952.367mil|Location2.X=2957.617mil|Location1.Y=1716.28mil|Location2.Y=1721.53mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2952.367mil|Location2.X=2957.617mil|Location1.Y=1716.28mil|Location2.Y=1721.53mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.82mil &lt; 4mil) Between Pad R38-2(1635.591mil,995mil) on Top Layer And Text "R38" (1570.013mil,940.005mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [2.82mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3617.375mil|Location2.X=3622.625mil|Location1.Y=3190.956mil|Location2.Y=3196.206mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3617.375mil|Location2.X=3622.625mil|Location1.Y=3190.956mil|Location2.Y=3196.206mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.172mil &lt; 4mil) Between Pad U2-34(2300mil,2489.685mil) on Multi-Layer And Text "R55" (2285.013mil,2415.005mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [2.172mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3746.813mil|Location2.X=3753.806mil|Location1.Y=3202.622mil|Location2.Y=3209.699mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3746.813mil|Location2.X=3753.806mil|Location1.Y=3202.622mil|Location2.Y=3209.699mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.228mil &lt; 4mil) Between Pad U2-36(2400mil,2489.685mil) on Multi-Layer And Text "C1" (2430.006mil,2430.005mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.228mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3785.596mil|Location2.X=3792.61mil|Location1.Y=3203.24mil|Location2.Y=3210.309mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3785.596mil|Location2.X=3792.61mil|Location1.Y=3203.24mil|Location2.Y=3210.309mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.398mil &lt; 4mil) Between Pad U2-38(2500mil,2489.685mil) on Multi-Layer And Text "C1" (2430.006mil,2430.005mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.398mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2716.732mil|Location2.X=2721.982mil|Location1.Y=1383.629mil|Location2.Y=1388.879mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2716.732mil|Location2.X=2721.982mil|Location1.Y=1383.629mil|Location2.Y=1388.879mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.509mil &lt; 4mil) Between Pad U2-65(1400mil,600mil) on Multi-Layer And Text "R45" (1451.652mil,647.506mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [2.509mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3439.624mil|Location2.X=3444.874mil|Location1.Y=2985.369mil|Location2.Y=2990.619mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3439.624mil|Location2.X=3444.874mil|Location1.Y=2985.369mil|Location2.Y=2990.619mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.765mil &lt; 4mil) Between Pad U4-4(2138.749mil,2235.282mil) on Top Layer And Text "U4" (2115.256mil,2245.877mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.765mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3454.376mil|Location2.X=3459.626mil|Location1.Y=1724.497mil|Location2.Y=1729.747mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3454.376mil|Location2.X=3459.626mil|Location1.Y=1724.497mil|Location2.Y=1729.747mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.765mil &lt; 4mil) Between Pad U4-4(2153.501mil,974.409mil) on Top Layer And Text "U4" (2130.008mil,985.005mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.765mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3455.876mil|Location2.X=3461.126mil|Location1.Y=2359.202mil|Location2.Y=2364.452mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3455.876mil|Location2.X=3461.126mil|Location1.Y=2359.202mil|Location2.Y=2364.452mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (1.356mil &lt; 4mil) Between Pad U4-4(2155mil,1608.819mil) on Top Layer And Text "U4" (2130.008mil,1620.005mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [1.356mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3452.624mil|Location2.X=3457.874mil|Location1.Y=3021.125mil|Location2.Y=3026.375mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3452.624mil|Location2.X=3457.874mil|Location1.Y=3021.125mil|Location2.Y=3026.375mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.765mil &lt; 4mil) Between Pad U4-5(2138.748mil,2286.463mil) on Top Layer And Text "U4" (2115.256mil,2245.877mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.765mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3467.377mil|Location2.X=3472.627mil|Location1.Y=1760.253mil|Location2.Y=1765.503mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3467.377mil|Location2.X=3472.627mil|Location1.Y=1760.253mil|Location2.Y=1765.503mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.765mil &lt; 4mil) Between Pad U4-5(2153.501mil,1025.591mil) on Top Layer And Text "U4" (2130.008mil,985.005mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.765mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3467.377mil|Location2.X=3472.627mil|Location1.Y=2394.957mil|Location2.Y=2400.207mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3467.377mil|Location2.X=3472.627mil|Location1.Y=2394.957mil|Location2.Y=2400.207mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mil &lt; 4mil) Between Pad U4-5(2155mil,1660mil) on Top Layer And Text "U4" (2130.008mil,1620.005mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.175mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3879.377mil|Location2.X=3884.627mil|Location1.Y=2989.497mil|Location2.Y=2994.747mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3879.377mil|Location2.X=3884.627mil|Location1.Y=2989.497mil|Location2.Y=2994.747mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.765mil &lt; 4mil) Between Pad U6-4(2578.501mil,2239.41mil) on Top Layer And Text "U6" (2555.008mil,2250.005mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.765mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3899.376mil|Location2.X=3904.626mil|Location1.Y=2359.497mil|Location2.Y=2364.747mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3899.376mil|Location2.X=3904.626mil|Location1.Y=2359.497mil|Location2.Y=2364.747mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.765mil &lt; 4mil) Between Pad U6-4(2598.501mil,1609.409mil) on Top Layer And Text "U6" (2575.008mil,1620.005mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.765mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3899.376mil|Location2.X=3904.626mil|Location1.Y=1724.497mil|Location2.Y=1729.747mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3899.376mil|Location2.X=3904.626mil|Location1.Y=1724.497mil|Location2.Y=1729.747mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.765mil &lt; 4mil) Between Pad U6-4(2598.501mil,974.409mil) on Top Layer And Text "U6" (2575.008mil,985.005mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.765mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3892.377mil|Location2.X=3897.627mil|Location1.Y=3025.253mil|Location2.Y=3030.503mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3892.377mil|Location2.X=3897.627mil|Location1.Y=3025.253mil|Location2.Y=3030.503mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.765mil &lt; 4mil) Between Pad U6-5(2578.501mil,2290.59mil) on Top Layer And Text "U6" (2555.008mil,2250.005mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.765mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3912.377mil|Location2.X=3917.627mil|Location1.Y=1760.253mil|Location2.Y=1765.503mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3912.377mil|Location2.X=3917.627mil|Location1.Y=1760.253mil|Location2.Y=1765.503mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.765mil &lt; 4mil) Between Pad U6-5(2598.501mil,1025.591mil) on Top Layer And Text "U6" (2575.008mil,985.005mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.765mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3912.377mil|Location2.X=3917.627mil|Location1.Y=2395.253mil|Location2.Y=2400.503mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3912.377mil|Location2.X=3917.627mil|Location1.Y=2395.253mil|Location2.Y=2400.503mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.765mil &lt; 4mil) Between Pad U6-5(2598.501mil,1660.591mil) on Top Layer And Text "U6" (2575.008mil,1620.005mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.765mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDUGGW1ASEBM3DJEYK01BNDP5ECE4YH3MVMU0ZYEAPVSEKOSZTUIM"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Board Clearance Constraint (Gap=0mil) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1123.035mil|Location2.X=1129.284mil|Location1.Y=2586.862mil|Location2.Y=2593.112mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1123.035mil|Location2.X=1129.284mil|Location1.Y=2586.862mil|Location2.Y=2593.112mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 7.874mil) Between Board Edge And Text "Input" (-180mil,1824.994mil) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1122.993mil|Location2.X=1129.242mil|Location1.Y=2306.875mil|Location2.Y=2313.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1122.993mil|Location2.X=1129.242mil|Location1.Y=2306.875mil|Location2.Y=2313.125mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 7.874mil) Between Board Edge And Track (-192.953mil,1405.945mil)(-192.953mil,1724.055mil) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1122.993mil|Location2.X=1129.242mil|Location1.Y=2147.82mil|Location2.Y=2154.07mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1122.993mil|Location2.X=1129.242mil|Location1.Y=2147.82mil|Location2.Y=2154.07mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 7.874mil) Between Board Edge And Track (-192.953mil,1405.945mil)(62.953mil,1405.945mil) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1122.993mil|Location2.X=1129.242mil|Location1.Y=2465.93mil|Location2.Y=2472.18mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1122.993mil|Location2.X=1129.242mil|Location1.Y=2465.93mil|Location2.Y=2472.18mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 7.874mil) Between Board Edge And Track (-192.953mil,1724.055mil)(62.953mil,1724.055mil) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4522.899mil|Location2.X=4532.023mil|Location1.Y=2146.383mil|Location2.Y=2155.507mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4522.899mil|Location2.X=4532.023mil|Location1.Y=2146.383mil|Location2.Y=2155.507mil|Absolute=True">Board Outline Clearance(Outline Edge): (5.079mil &lt; 7.874mil) Between Board Edge And Track (2947.047mil,1405.945mil)(3202.953mil,1405.945mil) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4522.899mil|Location2.X=4532.023mil|Location1.Y=2464.493mil|Location2.Y=2473.617mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4522.899mil|Location2.X=4532.023mil|Location1.Y=2464.493mil|Location2.Y=2473.617mil|Absolute=True">Board Outline Clearance(Outline Edge): (5.079mil &lt; 7.874mil) Between Board Edge And Track (2947.047mil,1724.055mil)(3202.953mil,1724.055mil) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4522.899mil|Location2.X=4532.023mil|Location1.Y=2146.383mil|Location2.Y=2155.507mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Hermes - Capstone 2023\PCBA.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4522.899mil|Location2.X=4532.023mil|Location1.Y=2146.383mil|Location2.Y=2155.507mil|Absolute=True">Board Outline Clearance(Outline Edge): (5.079mil &lt; 7.874mil) Between Board Edge And Track (3202.953mil,1405.945mil)(3202.953mil,1724.055mil) on Top Overlay </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
