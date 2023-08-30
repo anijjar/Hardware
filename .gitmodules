@@ -1,3 +1,6 @@
 [submodule "Audio Effects Board"]
 	path = Audio Effects Board
 	url = https://github.com/anijjar/ECE299.git
+[submodule "Electronic Speed Controller/Hermes"]
+	path = Electronic Speed Controller/Hermes
+	url = https://github.com/evanmaier/Hermes.git
